@@ -1,0 +1,32 @@
+CREATE TABLE IF NOT EXISTS user_(
+	id VARCHAR(63) NOT NULL,
+	username VARCHAR(31) NOT NULL UNIQUE,
+	email VARCHAR(255) NOT NULL UNIQUE,
+	created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+	updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+	CONSTRAINT pk_user_id PRIMARY KEY (id)
+);
+
+CREATE TABLE IF NOT EXISTS user_pass_(
+	user_id VARCHAR(63) NOT NULL,
+	salt VARCHAR(255) NOT NULL,
+	password VARCHAR(255) NOT NULL,
+	CONSTRAINT pk_user_pass_id PRIMARY KEY (user_id),
+	CONSTRAINT fk_user_id FOREIGN KEY(user_id) REFERENCES user_(id)
+);
+
+CREATE TABLE IF NOT EXISTS note_(
+	id VARCHAR(63) NOT NULL,
+	user_id VARCHAR(63) NOT NULL,
+	title VARCHAR(127) NOT NULL,
+	content VARCHAR(1023) NOT NULL,
+	created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+	updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+	CONSTRAINT pk_note_id PRIMARY KEY (id),
+	CONSTRAINT fk_user_id FOREIGN KEY(user_id) REFERENCES user_(id)
+);
+
+ALTER TABLE note_ ADD COLUMN vector TSVECTOR;
+UPDATE note_ SET vector = TO_TSVECTOR('english', content);
+CREATE INDEX idx_vector ON note_ USING gin(vector);
+
