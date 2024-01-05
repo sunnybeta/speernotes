@@ -41,6 +41,16 @@ pytest -v
 
 ![PyTestSS](/images/tests.png)
 
+## Tech Stack
+
+* Back End: **FastAPI** It's quite easy to get q protoype up and running in Python. As I started the task really late, I believe it was a good choice. Alternate choice would have been Go.
+
+* Database: **PostgreSQL** I chose PostgerSQL as we had a single service which handles user creation, authentication and notes creation. It is easy to have relations among these entities and retrieve the required data.
+
+* Containerization: **Docker**
+
+* Front End: Would I will continue working on this and woudl go with Next.
+
 ## License
 
 ![MIT](LICENSE)
