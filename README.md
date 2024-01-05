@@ -39,6 +39,8 @@ I will try to add a docker `compose.yml` file as soon as possible.
 pytest -v
 ```
 
+![PyTestSS](/images/tests.png)
+
 ## License
 
 ![MIT](LICENSE)
