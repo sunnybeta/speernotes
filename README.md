@@ -27,7 +27,7 @@ pip install --upgrade pip
 pip install -r requirements.txt
 ```
 
-If the above `pip` installation fails, due to `psyopg2` missing, you will need the `lib-pq` library instead.
+If the above `pip` installation fails, due to `psycopg2` missing, you will probably need the `libpq` library.
 
 I will try to add a docker `compose.yml` file as soon as possible.
 
